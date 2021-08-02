@@ -16,10 +16,12 @@ namespace TechStyle.API.Controllers
     public class EstoqueController : ControllerBase
     {
         private readonly EstoqueRepositorio _repo;
+        private readonly LojaRepositorio _lojaRepo;
 
-        public EstoqueController(EstoqueRepositorio repo)
+        public EstoqueController(EstoqueRepositorio repo, LojaRepositorio lojaRepo)
         {
             _repo = repo;
+            _lojaRepo = lojaRepo;
         }
 
         // GET: api/<EstoqueController>
@@ -33,15 +35,16 @@ namespace TechStyle.API.Controllers
         [HttpPost("estoque")]
         public void Post([FromBody] EstoqueDto dto, int idProduto)
         {
-            _repo.Incluir(new Estoque().Cadastrar(idProduto, dto.QuantidadeTotal, dto.QuantidadeMinima,
-                                                  dto.QuantidadeAtual, dto.Local));
+            _repo.Incluir(new Estoque().Cadastrar(idProduto, dto.QuantidadeAtual, dto.QuantidadeMinima,
+                                                  _lojaRepo.BuscarPorProdutoId(idProduto).Quantidade, dto.Local));
         }
 
         // PUT api/<EstoqueController>/5
         [HttpPut("estoque")]
         public void Put(int idProduto, [FromBody] EstoqueDto dto)
         {
-            _repo.Alterar(idProduto, new Estoque().Cadastrar(idProduto, dto.QuantidadeTotal, dto.QuantidadeMinima, dto.QuantidadeAtual, dto.Local));
+            _repo.Alterar(idProduto, new Estoque().Cadastrar(idProduto, dto.QuantidadeAtual, dto.QuantidadeMinima,
+                                                            _lojaRepo.BuscarPorProdutoId(idProduto).Quantidade, dto.Local));
         }
     }
 }

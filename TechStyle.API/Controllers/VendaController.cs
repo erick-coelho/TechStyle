@@ -39,14 +39,14 @@ namespace TechStyle.API.Controllers
         [HttpPost]
         public void Post([FromBody] VendaDto dto)
         {
-            _repo.Incluir(new Venda().Cadastrar(dto.ValorTotal, dto.Desconto));
+            _repo.Incluir(new Venda().Cadastrar());
         }
 
         // PUT api/<VendaController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] VendaDto dto)
         {
-            _repo.Alterar(id, new Venda().Cadastrar(dto.ValorTotal, dto.Desconto));
+            _repo.Alterar(id, new Venda().Cadastrar());
         }
 
         // DELETE api/<VendaController>/5

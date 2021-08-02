@@ -29,5 +29,15 @@ namespace TechStyle.dominio.Modelo
             Quantidade = lojaAlterada.Quantidade;
             QuantidadeMinima = lojaAlterada.QuantidadeMinima;
         }
+
+        internal bool RemoverQuantidade(int quantidade)
+        {
+            if(Quantidade >= quantidade)
+            {
+                Quantidade -= quantidade;
+                return true;
+            }
+            return false;
+        }
     }
 }

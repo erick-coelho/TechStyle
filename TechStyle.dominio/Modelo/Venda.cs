@@ -21,12 +21,15 @@ namespace TechStyle.dominio.Modelo
         }
 
 
-        public Venda Cadastrar(decimal valorTotal, decimal desconto)
+        public Venda Cadastrar()
         {
-            ValorTotal = valorTotal;
-            Desconto = desconto;
             Data = DateTime.Now;
             return this;
+        }
+
+        public void AdicionarValorItemAoTotal(decimal valor)
+        {
+            ValorTotal += valor;
         }
     }
 }

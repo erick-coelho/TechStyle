@@ -21,14 +21,20 @@ namespace TechStyle.dominio.Modelo
         [JsonIgnore]
         public Produto Produto { get; private set; }
 
-        public Estoque Cadastrar(int idProduto, int quantidadeTotal, int quantidadeMinima, int quantidadeAtual, string local)
+        public Estoque Cadastrar(int idProduto, int quantidadeAtual, int quantidadeMinima, int quantidadeEmLoja, string local)
         {
             IdProduto = idProduto;
-            QuantidadeTotal = quantidadeTotal;
+            QuantidadeAtual =  quantidadeAtual;
             QuantidadeMinima = quantidadeMinima;
-            QuantidadeAtual = quantidadeAtual;
             Local = local;
+            QuantidadeTotal = QuantidadeAtual + quantidadeEmLoja;
             return this;
+        }
+
+        internal void AtualizarTotal(int quantidadeEmLoja)
+        {
+            
+            QuantidadeTotal = QuantidadeAtual + quantidadeEmLoja;
         }
 
         public void Alterar(Estoque estoqueAlterado)

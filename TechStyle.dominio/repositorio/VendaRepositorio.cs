@@ -15,5 +15,13 @@ namespace TechStyle.dominio.repositorio
             vendaParaAlterar.Alterar(vendaAlterada);
             return base.Alterar(vendaParaAlterar);
         }
+
+        internal bool AdicionarTotal(decimal valor, int id)
+        {
+            var venda = BuscarPorId(id);
+            venda.AdicionarValorItemAoTotal(valor);
+
+            return base.Alterar(venda);
+        }
     }
 }

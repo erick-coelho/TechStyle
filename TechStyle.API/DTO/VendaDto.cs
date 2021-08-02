@@ -7,7 +7,5 @@ namespace TechStyle.API.DTO
 {
     public class VendaDto
     {
-        public decimal ValorTotal { get; set; }
-        public decimal Desconto { get; set; }
     }
 }
